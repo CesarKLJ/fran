@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.freepik.com/vector-gratis/noche-oceano-paisaje-luna-llena-estrellas-brillan_107791-7397.jpg?semt=ais_hybrid&w=740');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .calculadora {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      width: 90%;
+      max-width: 350px;
+    }
+
+    .pantalla {
+      width: 100%;
+      height: 60px;
+      font-size: 2em;
+      text-align: right;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 15px;
+    }
+
+    .botones {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #444;
+      color: white;
+    }
+
+    button.operador {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    button.igual {
+      background-color: #4caf50;
+      color: white;
+      grid-column: span 2;
+    }
+
+    button.clear {
+      background-color: #f44336;
+      color: white;
+      grid-column: span 2;
+    }
+
+    @media (max-width: 400px) {
+      .pantalla {
+        font-size: 1.5em;
+      }
+
+      button {
+        padding: 15px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <input type="text" class="pantalla" id="pantalla" disabled>
+    <div class="botones">
+      <button onclick="agregar('7')">7</button>
+      <button onclick="agregar('8')">8</button>
+      <button onclick="agregar('9')">9</button>
+      <button class="operador" onclick="agregar('/')">÷</button>
+
+      <button onclick="agregar('4')">4</button>
+      <button onclick="agregar('5')">5</button>
+      <button onclick="agregar('6')">6</button>
+      <button class="operador" onclick="agregar('*')">×</button>
+
+      <button onclick="agregar('1')">1</button>
+      <button onclick="agregar('2')">2</button>
+      <button onclick="agregar('3')">3</button>
+      <button class="operador" onclick="agregar('-')">−</button>
+
+      <button onclick="agregar('0')">0</button>
+      <button onclick="agregar('.')">.</button>
+      <button class="igual" onclick="calcular()">=</button>
+      <button class="operador" onclick="agregar('+')">+</button>
+
+      <button class="clear" onclick="borrar()">C</button>
+    </div>
+  </div>
+
+  <script>
+    function agregar(valor) {
+      document.getElementById('pantalla').value += valor;
+    }
+
+    function calcular() {
+      try {
+        document.getElementById('pantalla').value = eval(document.getElementById('pantalla').value);
+      } catch (e) {
+        document.getElementById('pantalla').value = 'Error';
+      }
+    }
+
+    function borrar() {
+      document.getElementById('pantalla').value = '';
+    }
+  </script>
+</body>
+</html>
